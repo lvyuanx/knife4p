@@ -14,6 +14,16 @@ Knife4p 是一个面向 Python Web 项目的 Knife4j / Knife4p OpenAPI UI 适配
 - 支持相对路径和绝对 URL 的 OpenAPI schema。
 - 暴露 Springdoc / Springfox 常见兼容端点，方便 Knife4p UI 读取配置。
 
+## 界面预览
+
+### 文档首页
+
+![Knife4p 文档首页](docs/images/knife4p-home-overview.png)
+
+### 接口文档
+
+![Knife4p 接口文档](docs/images/knife4p-api-doc.png)
+
 ## 环境要求
 
 - Python 3.9+
