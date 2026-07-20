@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "knife4p"
-version = "0.1.0"
+version = "0.1.2"
 description = "Framework-agnostic Knife4j OpenAPI UI adapter for Python ASGI and Django apps."
 readme = "README.md"
 requires-python = ">=3.9"

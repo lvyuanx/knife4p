@@ -139,3 +139,65 @@ def test_copied_markdown_expands_anyof_ref_response_schema():
     assert "| `data.project_id` | integer | Yes | 编排作品 ID |" in markdown
     assert "| `data.name` | string | Yes | 编排作品名称 |" in markdown
     assert "| 200 | OK | object |" not in markdown
+
+
+def test_copied_markdown_omits_request_body_section_when_operation_has_no_body():
+    operation = {
+        "summary": "Validate deployment token",
+        "parameters": [
+            {
+                "in": "header",
+                "name": "authorization",
+                "schema": {
+                    "description": "模型部署工具 Bearer token",
+                    "type": "string",
+                },
+                "required": True,
+                "description": "模型部署工具 Bearer token",
+            }
+        ],
+        "responses": {"200": {"description": "OK"}},
+    }
+    doc = {
+        "openapi": "3.1.0",
+        "info": {"title": "knife4p test", "version": "1.0.0"},
+        "paths": {},
+    }
+
+    markdown = generate_markdown_from_asset(operation, doc)
+
+    assert "## Request Body" not in markdown
+    assert "*No request body.*" not in markdown
+
+
+def test_copied_markdown_keeps_request_body_section_when_operation_has_body():
+    operation = {
+        "summary": "Create project",
+        "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Project name",
+                            }
+                        },
+                        "required": ["name"],
+                    }
+                }
+            }
+        },
+        "responses": {"200": {"description": "OK"}},
+    }
+    doc = {
+        "openapi": "3.1.0",
+        "info": {"title": "knife4p test", "version": "1.0.0"},
+        "paths": {},
+    }
+
+    markdown = generate_markdown_from_asset(operation, doc)
+
+    assert "## Request Body" in markdown
+    assert "| `name` | string | Yes | Project name |" in markdown

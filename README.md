@@ -49,7 +49,7 @@ pip install knife4p
 如果暂时还没有发布到包仓库，也可以从本地构建产物或源码路径安装：
 
 ```bash
-pip install dist/knife4p-0.1.0-py3-none-any.whl
+pip install dist/knife4p-0.1.2-py3-none-any.whl
 # 或
 pip install /path/to/knife4p
 ```
